@@ -1,5 +1,5 @@
 <?php
 
-use App\Controllers\HomeController;
+use App\Controllers\ImageController;
 
-$app->get('/', HomeController::class . ':index');
+$app->post('/images', ImageController::class . ':store');

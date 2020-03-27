@@ -45,8 +45,8 @@ $container = $app->getContainer();
 
 $capsule = new Capsule;
 $capsule->addConnection($container->get('settings')['database']);
-
 $capsule->setEventDispatcher(new Dispatcher(new Container));
+
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
