@@ -15,7 +15,8 @@
         "illuminate/database": "^7.3",
         "illuminate/events": "^7.3",
         "ramsey/uuid": "^4.0",
-        "intervention/image": "^2.5"
+        "intervention/image": "^2.5",
+        "intervention/imagecache": "^2.4"
     },
     "autoload": {
         "psr-4": {

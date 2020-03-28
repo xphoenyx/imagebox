@@ -11,3 +11,13 @@ if (!function_exists('uploads_path')) {
         return base_path('storage/uploads/' . $path);
     }
 }
+
+if (!function_exists('dd')) {
+    function dd(...$values) {
+        foreach($values as $value) {
+            dump($value);
+        }
+        
+        die();
+    }
+}

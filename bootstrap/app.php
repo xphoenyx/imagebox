@@ -39,11 +39,18 @@ $container->set('settings', function () {
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
         ],
+
+        'image' => [
+            'cache' => [
+                'path' => base_path('storage/cache/image'),
+            ],
+        ],
     ];
 });
 
-$container->set('image', function () {
+$container->set('image', function ($container) {
     $manager = new ImageManager();
+    $manager->configure($container->get('settings')['image']);
 
     return $manager;
 });
