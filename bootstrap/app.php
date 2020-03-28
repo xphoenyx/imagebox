@@ -6,6 +6,7 @@ use Dotenv\Exception\InvalidPathException;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Intervention\Image\ImageManager;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -41,7 +42,11 @@ $container->set('settings', function () {
     ];
 });
 
-$container = $app->getContainer();
+$container->set('image', function () {
+    $manager = new ImageManager();
+
+    return $manager;
+});
 
 $capsule = new Capsule;
 $capsule->addConnection($container->get('settings')['database']);

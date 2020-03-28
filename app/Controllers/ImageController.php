@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use \Exception;
 use App\Controllers\Controller;
 use App\Services\Files\StoreFile;
 use Psr\Http\Message\{
@@ -17,6 +18,12 @@ class ImageController extends Controller
             return $response->withStatus(422);
         }
 
+        try {
+            $this->c->get('image')->make($upload->getStream()->getMetadata('uri'));
+        } catch (Exception $e) {
+            return $response->withStatus(422);
+        }
+
         $store = (new StoreFile())->upload($upload);
 
         $payload = json_encode([
@@ -24,7 +31,7 @@ class ImageController extends Controller
         ]);
 
         $response->getBody()->write($payload);
-        
+
         return $response
                 ->withHeader('Content-Type', 'application/json');
     }
