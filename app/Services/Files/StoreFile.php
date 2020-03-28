@@ -18,7 +18,7 @@ class StoreFile {
     {
         try {
             $model = $this->createModel($file);
-            $file->moveTo(uploads_path($model->uuid . '.jpg'));
+            $file->moveTo(uploads_path($model->uuid));
         } catch (Exception $e) {
             //
         }
