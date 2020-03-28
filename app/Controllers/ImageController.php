@@ -49,10 +49,26 @@ class ImageController extends Controller
             return $response->withStatus(422);
         }
 
-        $imageContent = (string) $this->c->get('image')->make(uploads_path($image->uuid))->encode('png');
+        $imageContent = $this->getProcessedImage($image, $request);
 
         $response->getBody()->write($imageContent);
 
         return $response->withHeader('Content-Type', 'image/png');
+    }
+
+    protected function getProcessedImage($image, $request)
+    {
+        return (string) $this->c->get('image')->make(uploads_path($image->uuid))
+            ->resize(null, $this->getRequestedSize($request), function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->encode('png');
+    }
+
+    protected function getRequestedSize($request)
+    {
+        $size = $request->getQueryParams()['s'] ?? null;
+
+        return max(min($size, 800) ?? 100, 10);
     }
 }
