@@ -11,7 +11,7 @@ __Condition__: If valid UUID is passed as a param and image exists
 
 __Code__: `200 OK`
 
-__Content__: content of an image
+__Content__: raw content of an image
 
 __Content type__: `image/png`
 

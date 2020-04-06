@@ -30,6 +30,6 @@ __Content__: `{}`
 ### OR
 __Condition__: If file is not a valid image
 
-__Code__: `422 UNSUPPORTED MEDIA TYPE`
+__Code__: `415 UNSUPPORTED MEDIA TYPE`
 
 __Content__: `{}`
