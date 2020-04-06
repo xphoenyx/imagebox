@@ -22,7 +22,7 @@ class ImageController extends Controller
         try {
             $this->c->get('image')->make($upload->getStream()->getMetadata('uri'));
         } catch (Exception $e) {
-            return $response->withStatus(422);
+            return $response->withStatus(415);
         }
 
         $store = (new StoreFile())->upload($upload);
@@ -46,7 +46,7 @@ class ImageController extends Controller
         try {
             $image = Image::where('uuid', $uuid)->firstOrFail();
         } catch (Exception $e) {
-            return $response->withStatus(422);
+            return $response->withStatus(404);
         }
 
         $imageContent = $this->getProcessedImage($image, $request);
