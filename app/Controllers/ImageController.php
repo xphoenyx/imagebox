@@ -19,8 +19,14 @@ class ImageController extends Controller
             return $response->withStatus(422);
         }
 
+        if ($upload->getError()) {
+            return $response->withStatus(422);
+        }
+
         try {
-            $this->c->get('image')->make($upload->getStream()->getMetadata('uri'));
+            $this->c->get('image')->make(
+                $upload->getStream()->getMetadata('uri')
+            );
         } catch (Exception $e) {
             return $response->withStatus(415);
         }
@@ -64,8 +70,6 @@ class ImageController extends Controller
                 $request
             );
         });
-
-        
     }
 
     protected function processImage($bulder, $request)

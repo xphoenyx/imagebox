@@ -7,6 +7,7 @@ A small image uploading RESTful microservice, based on [Slim Framework](http://w
 - Clone project to project root folder;
 - Run `composer install` in project root;
 - Copy `.env.example` to `.env` and make required changes;
+- Copy `phinx.yml.example` to `phinx.yml` and make required changes;
 - Run `php vendor/bin/phinx` in project root;
 
 ## Usage
